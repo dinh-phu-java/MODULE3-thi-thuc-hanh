@@ -73,6 +73,24 @@ public class ProductServices implements IProductServices{
             throwables.printStackTrace();
         }
     }
+    String updateProduct=   "update products set product_name=? , price=?,quantity=?,color=?,category=? where product_id=?";
+    @Override
+    public void updateProduct(Product product,int product_id) {
+        Connection connection=DatabaseConnection.getConnection();
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement(updateProduct);
+            preparedStatement.setString(1,product.getProduct_name());
+            preparedStatement.setDouble(2,product.getPrice());
+            preparedStatement.setInt(3,product.getQuantity());
+            preparedStatement.setString(4,product.getColor());
+            preparedStatement.setInt(5,Integer.parseInt(product.getCategory()));
+            preparedStatement.setInt(6,product_id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     private final String deleteProductQuery="delete from  products where product_id=?";
     @Override
     public void deleteProduct(int product_id) {
@@ -113,11 +131,12 @@ public class ProductServices implements IProductServices{
         return product;
     }
 
-String updateProduct=   "update products set product_name=? , price=?,quantity=?,color=?,category=? where product_id=?";
+
+
 //    public static void main(String[] args) {
 //        ProductServices productServices=new ProductServices();
 //        Product product=new Product("abc",242,12,"red","1");
-//        productServices.addProduct(product);
+//        productServices.updateProduct(product,1);
 //    }
 
 

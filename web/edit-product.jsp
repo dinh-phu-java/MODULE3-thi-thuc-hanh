@@ -20,6 +20,7 @@
         <div class="col-sm-8">
             <form action="product-controller" method="post">
                 <input type="hidden" name="action" value="edit-product">
+                <input type="hidden" name="product-id" value="${editProduct.product_id}">
                 <div class="form-group">
                     <label for="productName">Product Name</label>
                     <input type="text" name="product_name" class="form-control" id="productName"
