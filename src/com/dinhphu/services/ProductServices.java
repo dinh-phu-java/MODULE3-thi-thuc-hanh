@@ -87,6 +87,33 @@ public class ProductServices implements IProductServices{
     }
 
 
+
+    private final String selectProductById="select p.product_id,p.product_name,p.price,p.quantity,p.color,c.category_name from products p inner join categories c on p.category=c.category_id where p.product_id=?";
+    @Override
+    public Product selectProductById(int product_id) {
+        Connection connection=DatabaseConnection.getConnection();
+        Product product=null;
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement(selectProductById);
+            preparedStatement.setInt(1,product_id);
+            ResultSet rs=preparedStatement.executeQuery();
+            while(rs.next()){
+//                int productid=rs.getInt(1);
+                String product_name=rs.getString(2);
+                double price =rs.getDouble(3);
+                int quantity =rs.getInt(4);
+                String color= rs.getString(5);
+                String category=rs.getString(6);
+                 product=new Product(product_id,product_name,price,quantity,color,category);
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return product;
+    }
+
+String updateProduct=   "update products set product_name=? , price=?,quantity=?,color=?,category=? where product_id=?";
 //    public static void main(String[] args) {
 //        ProductServices productServices=new ProductServices();
 //        Product product=new Product("abc",242,12,"red","1");

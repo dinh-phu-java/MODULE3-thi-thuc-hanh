@@ -75,11 +75,26 @@ public class ProductController extends HttpServlet {
             case "delete-product":
                 deleteProduct(request,response);
                 break;
+            case "edit-product":
+                 url="/edit-product.jsp";
+                editProduct(request,response);
+                break;
             default:
                 url="/home";
                 break;
         }
         getServletContext().getRequestDispatcher(url).forward(request,response);
+    }
+
+    private void editProduct(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session=request.getSession();
+        int product_id=Integer.parseInt(request.getParameter("product-id")) ;
+        Product editProduct=productServices.selectProductById(product_id);
+        request.setAttribute("editProduct",editProduct);
+
+        ArrayList<Category> categories=new ArrayList<>(productServices.selectAllCategory());
+        session.setAttribute("categories",categories);
+
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
