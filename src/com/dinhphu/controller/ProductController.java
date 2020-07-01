@@ -30,12 +30,32 @@ public class ProductController extends HttpServlet {
             case "edit-product":
                 editRealProduct(request, response);
                 break;
-
+            case "search":
+                searchProduct(request,response);
+                break;
             default:
                 url="/home";
                 break;
         }
 
+    }
+
+    private void searchProduct(HttpServletRequest request, HttpServletResponse response) {
+        String product_name=request.getParameter("search");
+        Product searchProduct=productServices.selectProductByName(product_name);
+        ArrayList<Product> productList=new ArrayList<>();
+        productList.add(searchProduct);
+        String message="Search Result!";
+        request.setAttribute("message",message);
+        request.setAttribute("productList",productList);
+        String url="/home.jsp";
+        try {
+            getServletContext().getRequestDispatcher(url).forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editRealProduct(HttpServletRequest request, HttpServletResponse response) {

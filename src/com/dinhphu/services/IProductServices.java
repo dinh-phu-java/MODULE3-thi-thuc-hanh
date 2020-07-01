@@ -12,4 +12,6 @@ public interface IProductServices {
     public void updateProduct(Product product,int product_id);
     public void deleteProduct(int product_id);
     public Product selectProductById(int product_id);
+    public Product selectProductByName(String name);
+
 }

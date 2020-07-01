@@ -22,8 +22,9 @@
             <a href="/product-controller?action=add-new-product" class="btn btn-primary float-left">+ Add New Product</a>
         </div>
         <div class="col-sm-6">
-            <form action="" class="float-right">
-                <input type="email" class="form-control" style="display:inline-block; width:400px;"  placeholder="Search">
+            <form action="/product-controller" method="post" class="float-right">
+                <input type="hidden" name="action" value="search">
+                <input type="text" class="form-control" name="search" style="display:inline-block; width:400px;"  placeholder="Search">
                 <button class="btn btn-primary " style="display:inline-block;">Search</button>
             </form>
         </div>

@@ -130,13 +130,38 @@ public class ProductServices implements IProductServices{
         }
         return product;
     }
+    private final String selectProductByName="select p.product_id,p.product_name,p.price,p.quantity,p.color,c.category_name from products p inner join categories c on p.category=c.category_id where p.product_name like ?";
+    @Override
+    public Product selectProductByName(String name) {
+        Connection connection=DatabaseConnection.getConnection();
+        Product product=null;
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement(selectProductByName);
+            name="%"+name+"%";
+            preparedStatement.setString(1,name);
+            ResultSet rs=preparedStatement.executeQuery();
+            while(rs.next()){
+//                int productid=rs.getInt(1);
+                String product_name=rs.getString(2);
+                double price =rs.getDouble(3);
+                int quantity =rs.getInt(4);
+                String color= rs.getString(5);
+                String category=rs.getString(6);
+                product=new Product(product_name,price,quantity,color,category);
 
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return product;
+    }
 
 
 //    public static void main(String[] args) {
 //        ProductServices productServices=new ProductServices();
-//        Product product=new Product("abc",242,12,"red","1");
-//        productServices.updateProduct(product,1);
+//        System.out.println("hello pr");
+//        Product product=productServices.selectProductByName("Samsung");
+//        System.out.println(product.getProduct_name());
 //    }
 
 
