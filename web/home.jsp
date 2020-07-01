@@ -14,39 +14,34 @@
     <c:import url="views/head.jsp"/>
 </head>
 <body>
-<h1>Hello, world!</h1>
 
 <section class="container-fluid">
     <section clas="row">
         <div class="col-sm-12">
-            <table class="table">
+            <table class="table table-striped table-bordered table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <c:forEach items="${productList}" var="product">
+                    <tr>
+                        <th scope="row">${product.product_id}</th>
+                        <td >${product.product_name}</td>
+                        <td >${product.price}</td>
+                        <td >${product.quantity}</td>
+                        <td >${product.color}</td>
+                        <td>${product.category}</td>
+                        <td > <a href="">Edit</a>  | <a href="">Delete</a></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

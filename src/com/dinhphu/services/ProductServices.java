@@ -36,8 +36,5 @@ public class ProductServices implements IProductServices{
         return list;
     }
 
-    public static void main(String[] args) {
-        ProductServices productServices=new ProductServices();
-        productServices.selectAllProduct().forEach(k-> System.out.println(k.getProduct_name()));
-    }
+
 }
