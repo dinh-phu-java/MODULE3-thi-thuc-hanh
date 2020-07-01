@@ -18,11 +18,11 @@
 <section id="main-section" class="container-fluid">
     <section class="row">
         <div class="col-sm-6">
-            <a href="/home?action=add-new-product" class="btn btn-primary float-left">+ Add New Product</a>
+            <a href="" class="btn btn-primary float-left">+ Add New Product</a>
         </div>
         <div class="col-sm-6">
             <form action="" class="float-right">
-                <input type="email" class="form-control" style="display:inline-block; width:400px;"  placeholder="Search">
+                <input type="email" class="form-control" style="display:inline-block; width:400px;"  placeholder="Enter email">
                 <button class="btn btn-primary " style="display:inline-block;">Search</button>
             </form>
         </div>

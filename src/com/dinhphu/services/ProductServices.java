@@ -1,6 +1,8 @@
 package com.dinhphu.services;
 
+import com.dinhphu.model.Category;
 import com.dinhphu.model.Product;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,6 +37,32 @@ public class ProductServices implements IProductServices{
         }
         return list;
     }
+
+    private final String selectAllCategories="select * from categories";
+    @Override
+    public List<Category> selectAllCategory() {
+        Connection connection=DatabaseConnection.getConnection();
+        ArrayList<Category> list=new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement(selectAllCategories);
+            ResultSet rs=preparedStatement.executeQuery();
+            while(rs.next()){
+                int category_id=rs.getInt(1);
+                String category_name=rs.getString(2);
+                Category category=new Category(category_id,category_name);
+                list.add(category);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+//    public static void main(String[] args) {
+//        ProductServices productServices=new ProductServices();
+//        ArrayList<Category> list=new ArrayList<>(productServices.selectAllCategory());
+//        list.forEach(k-> System.out.println(k.getCategory_name()));
+//    }
 
 
 }

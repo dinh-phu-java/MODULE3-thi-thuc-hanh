@@ -28,12 +28,20 @@ public class MainController extends HttpServlet {
             action="views";
         }
         switch (action){
+            case "add-new-product":
+                url="/add-new-product.jsp";
+                showAddProduct(request,response);
+                break;
             default:
                 url="/home.jsp";
                 showAllProduct(request,response);
                 break;
         }
         getServletContext().getRequestDispatcher(url).forward(request,response);
+    }
+
+    private void showAddProduct(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     private void showAllProduct(HttpServletRequest request, HttpServletResponse response) {
