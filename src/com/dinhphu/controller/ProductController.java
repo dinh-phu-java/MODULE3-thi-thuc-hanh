@@ -142,6 +142,8 @@ public class ProductController extends HttpServlet {
         HttpSession session=request.getSession();
         int product_id=Integer.parseInt(request.getParameter("product-id")) ;
         Product editProduct=productServices.selectProductById(product_id);
+        System.out.println(editProduct.getQuantity());
+        System.out.println(editProduct.getColor());
         request.setAttribute("editProduct",editProduct);
 
         ArrayList<Category> categories=new ArrayList<>(productServices.selectAllCategory());

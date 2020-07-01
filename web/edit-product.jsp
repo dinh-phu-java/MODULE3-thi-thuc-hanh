@@ -29,22 +29,27 @@
 
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" name="price" class="form-control" id="price" placeholder="Price" ${editProduct.price}>
+                    <input type="text" name="price" class="form-control" id="price" placeholder="Price" value="${editProduct.price}">
                 </div>
 
                 <div class="form-group">
                     <label for="quantity">Quantity</label>
-                    <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity" ${editProduct.quantity}>
+                    <input type="text" name="quantity" class="form-control" id="quantity" placeholder="Quantity" value="${editProduct.quantity}">
                 </div>
 
                 <div class="form-group">
                     <label for="color">Color</label>
-                    <input type="text" name="color" class="form-control" id="color" placeholder="Color" ${editProduct.color}>
+                    <input type="text" name="color" class="form-control" id="color" placeholder="Color" value="${editProduct.color}">
                 </div>
 
                 <select class="custom-select" name="category">
                     <c:forEach items="${categories}" var="category">
-                        <option value="${category.category_id}">${category.category_name}</option>
+                        <c:if test = "${category.category_name==editProduct.category}">
+                            <option value="${category.category_id}"  selected>${category.category_name}</option>
+                        </c:if>
+                        <c:if test = "${category.category_name!=editProduct.category}">
+                            <option value="${category.category_id}"  >${category.category_name}</option>
+                        </c:if>
                     </c:forEach>
                 </select>
                 <br>
