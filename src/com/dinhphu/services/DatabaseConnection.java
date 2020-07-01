@@ -3,11 +3,11 @@ package com.dinhphu.services;
 import java.sql.*;
 
 public class DatabaseConnection {
-    private final String url="jdbc:mysql://localhost:3306/thi_module_3";
-    private final String host="root";
-    private final String password="qazWSX1@";
+    private static final String url="jdbc:mysql://localhost:3306/thi_module_3";
+    private static final String host="root";
+    private static final String password="qazWSX1@";
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
         Connection connection=null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -20,5 +20,5 @@ public class DatabaseConnection {
         return connection;
     }
 
-   
+
 }

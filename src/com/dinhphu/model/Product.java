@@ -6,9 +6,9 @@ public class Product {
     double price;
     int quantity;
     String color;
-    int category;
+    String category;
 
-    public Product(int product_id, String product_name, double price, int quantity, String color, int category) {
+    public Product(int product_id, String product_name, double price, int quantity, String color, String category) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.price = price;
@@ -58,11 +58,11 @@ public class Product {
         this.color = color;
     }
 
-    public int getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 }
