@@ -73,6 +73,19 @@ public class ProductServices implements IProductServices{
             throwables.printStackTrace();
         }
     }
+    private final String deleteProductQuery="delete from  products where product_id=?";
+    @Override
+    public void deleteProduct(int product_id) {
+        Connection connection=DatabaseConnection.getConnection();
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement(deleteProductQuery);
+            preparedStatement.setInt(1,product_id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 
 //    public static void main(String[] args) {
 //        ProductServices productServices=new ProductServices();

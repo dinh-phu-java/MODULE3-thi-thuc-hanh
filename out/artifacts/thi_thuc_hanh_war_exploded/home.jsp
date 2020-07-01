@@ -52,7 +52,7 @@
                         <td >${product.quantity}</td>
                         <td >${product.color}</td>
                         <td>${product.category}</td>
-                        <td > <a href="" class="btn btn-primary">Edit</a>  | <a href="" class="btn btn-danger">Delete</a></td>
+                        <td > <a href="" class="btn btn-primary">Edit</a>  | <a href="/product-controller?action=delete-product&product-id=${product.product_id}" class="btn btn-danger">Delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

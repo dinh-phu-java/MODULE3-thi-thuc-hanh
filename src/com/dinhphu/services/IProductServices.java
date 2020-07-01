@@ -9,4 +9,5 @@ public interface IProductServices {
     public List<Product> selectAllProduct();
     public List<Category> selectAllCategory();
     public void addProduct(Product product);
+    public void deleteProduct(int product_id);
 }

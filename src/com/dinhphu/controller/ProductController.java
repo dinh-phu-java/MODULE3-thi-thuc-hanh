@@ -48,8 +48,8 @@ public class ProductController extends HttpServlet {
         String message="Add Product Completed!";
         request.setAttribute("message",message);
         String url="/home.jsp";
-         ArrayList<Product> productList=new ArrayList<>(productServices.selectAllProduct());
-        request.setAttribute("productList",productList);
+        ArrayList<Product> productList=new ArrayList<>(productServices.selectAllProduct());
+        session.setAttribute("productList",productList);
 
         try {
             getServletContext().getRequestDispatcher(url).forward(request,response);
@@ -83,7 +83,22 @@ public class ProductController extends HttpServlet {
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
-        
+        int product_id=Integer.parseInt(request.getParameter("product-id")) ;
+        HttpSession session=request.getSession();
+        productServices.deleteProduct(product_id);
+        String url="/home.jsp";
+        String message="Delete Product Completed!";
+        request.setAttribute("message",message);
+        ArrayList<Product> productList=new ArrayList<>(productServices.selectAllProduct());
+        session.setAttribute("productList",productList);
+
+        try {
+            getServletContext().getRequestDispatcher(url).forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAddProduct(HttpServletRequest request, HttpServletResponse response) {
