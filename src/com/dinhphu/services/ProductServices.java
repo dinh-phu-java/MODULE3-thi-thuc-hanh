@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProductServices implements IProductServices{
 
-    private final String selectAllProductQuery="select p.product_id,p.product_name,p.price,p.quantity,p.color,c.category_name from products p inner join categories c on p.category=c.category_id";
+    private final String selectAllProductQuery="select p.product_id,p.product_name,p.price,p.quantity,p.color,c.category_name from products p inner join categories c on p.category=c.category_id order by p.product_id asc";
     @Override
     public List<Product> selectAllProduct() {
         ArrayList<Product> list=new ArrayList<>();
@@ -57,11 +57,27 @@ public class ProductServices implements IProductServices{
         }
         return list;
     }
+    private final String addProduct="insert into products(product_name, price, quantity, color, category) values (?,?,?,?,?)";
+    @Override
+    public void addProduct(Product product) {
+        Connection connection=DatabaseConnection.getConnection();
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement(addProduct);
+            preparedStatement.setString(1,product.getProduct_name());
+            preparedStatement.setDouble(2,product.getPrice());
+            preparedStatement.setInt(3,product.getQuantity());
+            preparedStatement.setString(4,product.getColor());
+            preparedStatement.setInt(5,Integer.parseInt(product.getCategory()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 //    public static void main(String[] args) {
 //        ProductServices productServices=new ProductServices();
-//        ArrayList<Category> list=new ArrayList<>(productServices.selectAllCategory());
-//        list.forEach(k-> System.out.println(k.getCategory_name()));
+//        Product product=new Product("abc",242,12,"red","1");
+//        productServices.addProduct(product);
 //    }
 
 

@@ -14,11 +14,12 @@
     <c:import url="views/head.jsp"/>
 </head>
 <body>
-
+<%--<a href="/product-controller?action=add-new-product" class="btn btn-primary float-left">+ Add New Product</a>--%>
+<h4>${message}</h4>
 <section id="main-section" class="container-fluid">
     <section class="row">
         <div class="col-sm-6">
-            <a href="/home?action=add-new-product" class="btn btn-primary float-left">+ Add New Product</a>
+            <a href="/product-controller?action=add-new-product" class="btn btn-primary float-left">+ Add New Product</a>
         </div>
         <div class="col-sm-6">
             <form action="" class="float-right">
@@ -51,7 +52,7 @@
                         <td >${product.quantity}</td>
                         <td >${product.color}</td>
                         <td>${product.category}</td>
-                        <td > <a href="" class="btn btn-primary">Edit</a>  | <a href="" class="btn btn-danger">Delete</a></td>
+                        <td > <a href="" class="btn btn-primary">Edit</a>  | <a href="/product-controller?action=delete-product&product-id=${product.product_id}" class="btn btn-danger">Delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

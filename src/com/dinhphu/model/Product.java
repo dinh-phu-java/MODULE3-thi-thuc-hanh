@@ -17,6 +17,14 @@ public class Product {
         this.category = category;
     }
 
+    public Product( String product_name, double price, int quantity, String color, String category) {
+        this.product_id = 0;
+        this.product_name = product_name;
+        this.price = price;
+        this.quantity = quantity;
+        this.color = color;
+        this.category = category;
+    }
 
     public int getProduct_id() {
         return product_id;

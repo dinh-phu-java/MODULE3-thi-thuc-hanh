@@ -8,4 +8,5 @@ import java.util.List;
 public interface IProductServices {
     public List<Product> selectAllProduct();
     public List<Category> selectAllCategory();
+    public void addProduct(Product product);
 }
